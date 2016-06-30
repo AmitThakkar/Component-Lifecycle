@@ -8,7 +8,7 @@ import {ChildComponent} from "./child.component";
     selector: 'parent-component',
     template: `
        Hello World Form Parent Component! Name: {{name}}
-       <child-component [name]="name"></child-component>
+       <child-component (onLiked)="like($event)" [name]="name"></child-component>
     `,
     directives: [ChildComponent]
 })
@@ -33,5 +33,9 @@ export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDest
 
     ngOnDestroy() {
         console.log('I am Parent ngOnDestroy');
+    }
+
+    like(liked:boolean) {
+        console.log(222, liked);
     }
 }

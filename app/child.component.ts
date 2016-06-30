@@ -1,16 +1,22 @@
 /**
  * Created by amitthakkar on 23/06/16.
  */
-import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy, Input} from '@angular/core';
+import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy, Input, Output} from '@angular/core';
+import {EventEmitter} from "@angular/forms/src/facade/async";
 
 @Component({
     selector: 'child-component',
     template: `
-       <div>Hello From Child Component! Name: {{name}}</div>
+        <div>
+            Hello From Child Component! Name: {{name}}
+            <button (click)="like()">{{ liked ? 'Unlike' : 'Like' }}</button>
+        </div>
     `
 })
 export class ChildComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     @Input() name:string;
+    @Output() onLiked = new EventEmitter<boolean>();
+    liked = false;
 
     constructor() {
         console.log('I am Child constructor');
@@ -30,5 +36,10 @@ export class ChildComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
     ngOnDestroy() {
         console.log('I am Child ngOnDestroy');
+    }
+
+    like() {
+        this.liked = !this.liked;
+        this.onLiked.emit(this.liked);
     }
 }
