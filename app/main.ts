@@ -3,4 +3,4 @@
  */
 import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {ParentComponent} from './parent.component';
-bootstrap(ParentComponent);
+bootstrap(<any>ParentComponent);
