@@ -11,7 +11,7 @@ import {ChildComponent} from "./child.component";
        <button (click)="toggleChild()">{{ isChildDisplay ? 'Remove' : 'Add' }} Child Component</button>
        <child-component *ngIf="isChildDisplay" (onLiked)="like($event)" [name]="name"></child-component>
     `,
-    directives: [ChildComponent]
+    directives: <any>[ChildComponent]
 })
 export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     name:string = 'Amit Thakkar';
