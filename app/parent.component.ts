@@ -7,13 +7,15 @@ import {ChildComponent} from "./child.component";
 @Component({
     selector: 'parent-component',
     template: `
-       Hello World Form Parent Component! Name: {{name}}
-       <child-component (onLiked)="like($event)" [name]="name"></child-component>
+       Hello World Form Parent Component! Name: {{name}} 
+       <button (click)="toggleChild()">{{ isChildDisplay ? 'Remove' : 'Add' }} Child Component</button>
+       <child-component *ngIf="isChildDisplay" (onLiked)="like($event)" [name]="name"></child-component>
     `,
     directives: [ChildComponent]
 })
 export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     name:string = 'Amit Thakkar';
+    isChildDisplay:boolean = true;
 
     constructor() {
         console.log('I am Parent constructor');
@@ -37,5 +39,9 @@ export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDest
 
     like(liked:boolean) {
         console.log(222, liked);
+    }
+
+    toggleChild() {
+        this.isChildDisplay = !this.isChildDisplay;
     }
 }
