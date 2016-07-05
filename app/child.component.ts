@@ -1,7 +1,7 @@
 /**
  * Created by amitthakkar on 23/06/16.
  */
-import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy, Input, Output} from '@angular/core';
+import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy, Input, Output, DoCheck} from '@angular/core';
 import {EventEmitter} from "@angular/forms/src/facade/async";
 
 @Component({
@@ -13,7 +13,7 @@ import {EventEmitter} from "@angular/forms/src/facade/async";
         </div>
     `
 })
-export class ChildComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class ChildComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy, DoCheck {
     @Input() name:string;
     @Output() onLiked = new EventEmitter<boolean>();
     liked = false;
@@ -36,6 +36,10 @@ export class ChildComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
     ngOnDestroy() {
         console.log('I am Child ngOnDestroy');
+    }
+
+    ngDoCheck() {
+        console.log('I am Child ngDoCheck');
     }
 
     like() {

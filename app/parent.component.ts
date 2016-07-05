@@ -1,7 +1,7 @@
 /**
  * Created by amitthakkar on 23/06/16.
  */
-import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnChanges, AfterViewInit, OnDestroy, DoCheck} from '@angular/core';
 import {ChildComponent} from "./child.component";
 
 @Component({
@@ -13,7 +13,7 @@ import {ChildComponent} from "./child.component";
     `,
     directives: <any>[ChildComponent]
 })
-export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy, DoCheck {
     name:string = 'Amit Thakkar';
     isChildDisplay:boolean = true;
 
@@ -35,6 +35,10 @@ export class ParentComponent implements OnInit, OnChanges, AfterViewInit, OnDest
 
     ngOnDestroy() {
         console.log('I am Parent ngOnDestroy');
+    }
+
+    ngDoCheck() {
+        console.log('I am Parent ngDoCheck');
     }
 
     like(liked:boolean) {
