@@ -1,6 +1,6 @@
 /**
  * Created by amitthakkar on 23/06/16.
  */
-import {bootstrap}    from '@angular/platform-browser-dynamic';
-import {ParentComponent} from './parent.component';
-bootstrap(<any>ParentComponent);
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from './app.module';
+platformBrowserDynamic().bootstrapModule(AppModule);
