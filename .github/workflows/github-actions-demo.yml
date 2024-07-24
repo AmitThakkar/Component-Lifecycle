@@ -1,0 +1,18 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          STAGING_APPS=("information-api" "mux-metrics-exporter")
+          for STAGING_APP in "${STAGING_APPS[@]}"; do
+            if [ "$STAGING_APP" == "$APP_NAME" ]; then
+              echo "Install in staging..."
+              exit 0
+            fi
+          done
+          echo "Skipping $APP_NAME, as it is not in the staging app list $STAGING_APPS"
+        env:
+          APP_NAME: mux-metrics-exporter
