@@ -16,3 +16,25 @@ jobs:
           echo "Skipping $APP_NAME, as it is not in the staging app list $STAGING_APPS"
         env:
           APP_NAME: mux-metrics-exporter
+      - run: |
+          STAGING_APPS=("information-api" "mux-metrics-exporter")
+          for STAGING_APP in "${STAGING_APPS[@]}"; do
+            if [ "$STAGING_APP" == "$APP_NAME" ]; then
+              echo "Install in staging..."
+              exit 0
+            fi
+          done
+          echo "Skipping $APP_NAME, as it is not in the staging app list $STAGING_APPS"
+        env:
+          APP_NAME: information-api
+      - run: |
+          STAGING_APPS=("information-api" "mux-metrics-exporter")
+          for STAGING_APP in "${STAGING_APPS[@]}"; do
+            if [ "$STAGING_APP" == "$APP_NAME" ]; then
+              echo "Install in staging..."
+              exit 0
+            fi
+          done
+          echo "Skipping $APP_NAME, as it is not in the staging app list $STAGING_APPS"
+        env:
+          APP_NAME: any-other-api
